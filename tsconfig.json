@@ -1,0 +1,85 @@
+{
+  /**
+   * Configuración de TypeScript para Node.js con mejores prácticas
+   * Basada en las recomendaciones oficiales de TypeScript y la comunidad
+   * Soporta importaciones modernas de ES Modules
+   */
+  "compilerOptions": {
+    /* Configuración del Módulo y Resolución */
+    "target": "ES2022",                          // Genera código JavaScript moderno
+    "module": "commonjs",                        // Sistema de módulos para Node.js
+    "lib": ["ES2022"],                           // Características de ES2022 disponibles
+    "moduleResolution": "node",                  // Resolución de módulos estilo Node.js
+    "resolveJsonModule": true,                   // Permite importar archivos JSON
+    "esModuleInterop": true,                     // Interoperabilidad entre CommonJS y ES Modules
+    "allowSyntheticDefaultImports": true,        // Permite imports default sintéticos
+
+    /* Directorios de Salida */
+    "outDir": "./dist",                          // Carpeta de salida para archivos compilados
+    "rootDir": "./src",                          // Carpeta raíz del código fuente
+
+    /* Generación de Archivos */
+    "declaration": true,                         // Genera archivos .d.ts para tipos
+    "declarationMap": true,                      // Genera mapas para archivos de declaración
+    "sourceMap": true,                           // Genera source maps para debugging
+    "removeComments": true,                      // Remueve comentarios en el código compilado
+    "importHelpers": false,                      // No usar tslib (para proyectos pequeños)
+
+    /* Verificación de Tipos Estricta (Mejores Prácticas) */
+    "strict": true,                              // Activa todas las verificaciones estrictas
+    "noImplicitAny": true,                       // Error en expresiones con tipo 'any' implícito
+    "strictNullChecks": true,                    // Verificación estricta de null/undefined
+    "strictFunctionTypes": true,                 // Verificación estricta de tipos de función
+    "strictBindCallApply": true,                 // Verificación estricta de bind/call/apply
+    "strictPropertyInitialization": true,        // Propiedades de clase deben ser inicializadas
+    "noImplicitThis": true,                      // Error cuando 'this' tiene tipo implícito
+    "alwaysStrict": true,                        // Emite "use strict" en cada archivo
+
+    /* Verificaciones Adicionales de Código */
+    "noUnusedLocals": true,                      // Error en variables locales no usadas
+    "noUnusedParameters": true,                  // Error en parámetros no usados
+    "noImplicitReturns": true,                   // Error si no todas las rutas retornan valor
+    "noFallthroughCasesInSwitch": true,          // Error en casos switch sin break
+    "noUncheckedIndexedAccess": true,            // Incluye undefined en accesos indexados
+    "allowUnusedLabels": false,                  // Error en labels no usadas
+    "allowUnreachableCode": false,               // Error en código inalcanzable
+
+    /* Compatibilidad y Optimización */
+    "skipLibCheck": true,                        // Omite verificación de tipos en archivos .d.ts
+    "forceConsistentCasingInFileNames": true,    // Fuerza consistencia en nombres de archivos
+    "emitDecoratorMetadata": true,               // Emite metadata para decoradores
+    "experimentalDecorators": true,              // Habilita decoradores experimentales
+
+    /* Interoperabilidad Avanzada */
+    "isolatedModules": true,                     // Asegura que cada archivo pueda ser transpilado independientemente
+    "preserveConstEnums": true,                  // Preserva enums const en el código generado
+
+    /* Path Mapping (Para imports limpios) */
+    "baseUrl": ".",                              // Base para resolver rutas no relativas
+    "paths": {
+      "@/*": ["src/*"],                          // Permite usar @/ para importar desde src/
+      "@config/*": ["src/config/*"],
+      "@domain/*": ["src/domain/*"],
+      "@presentation/*": ["src/presentation/*"],
+      "@infrastructure/*": ["src/infrastructure/*"]
+    }
+  },
+
+  /* Archivos a Incluir y Excluir */
+  "include": [
+    "src/**/*"                                   // Incluye todos los archivos en src/
+  ],
+  "exclude": [
+    "node_modules",                              // Excluye dependencias
+    "dist",                                      // Excluye archivos compilados
+    "**/*.spec.ts",                              // Excluye archivos de test (opcional)
+    "**/*.test.ts"
+  ],
+
+  /* Configuración para ts-node-dev */
+  "ts-node": {
+    "transpileOnly": true,                       // Transpila sin verificar tipos (más rápido en dev)
+    "files": true,                               // Incluye archivos en tsconfig
+    "require": ["tsconfig-paths/register"]       // Soporta path mapping en tiempo de ejecución
+  }
+}
