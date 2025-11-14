@@ -12,7 +12,11 @@ logs/
 
 
 dist/
+mongo/
+postgres/
 
 .DS_Store
+.env
 
 ARQUITECTURA-LIMPIA-EXPLICADA.md
+/src/generated/prisma
